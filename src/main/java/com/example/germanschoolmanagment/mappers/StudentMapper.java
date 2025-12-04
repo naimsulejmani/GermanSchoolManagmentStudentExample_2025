@@ -1,4 +1,7 @@
 package com.example.germanschoolmanagment.mappers;
 
-public interface StudentMapper {
+import com.example.germanschoolmanagment.dtos.StudentDto;
+import com.example.germanschoolmanagment.entities.Student;
+
+public interface StudentMapper extends BaseMapper<Student, StudentDto>{
 }
