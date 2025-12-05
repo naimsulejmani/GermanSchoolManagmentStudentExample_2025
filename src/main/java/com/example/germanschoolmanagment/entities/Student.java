@@ -46,4 +46,7 @@ public class Student {
     @Column(nullable = false)
     private LocalDate registrationDate;
     private LocalDate graduationDate;
+
+    @Column(length = 1000)
+    private String imageUrl;
 }

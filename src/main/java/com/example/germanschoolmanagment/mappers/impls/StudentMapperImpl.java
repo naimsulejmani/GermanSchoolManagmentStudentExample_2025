@@ -1,12 +1,15 @@
 package com.example.germanschoolmanagment.mappers.impls;
 
 import com.example.germanschoolmanagment.dtos.StudentDto;
+import com.example.germanschoolmanagment.dtos.StudentListDto;
 import com.example.germanschoolmanagment.entities.Student;
 import com.example.germanschoolmanagment.mappers.StudentMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class StudentMapperImpl implements StudentMapper {
 
     @Override
@@ -77,5 +80,22 @@ public class StudentMapperImpl implements StudentMapper {
 //        }
 //        return entities;
         return dtos.stream().map(this::toEntity).toList();
+    }
+
+    @Override
+    public StudentListDto toStudentListDto(Student student) {
+
+        StudentListDto slDto = new StudentListDto();
+        slDto.setId(student.getId());
+        slDto.setFullName(student.getName() + " " + student.getLastName());
+        slDto.setImageUrl(student.getImageUrl());
+        slDto.setYear(student.getGraduationDate().getYear());
+
+        return null;
+    }
+
+    @Override
+    public List<StudentListDto> toStudentListDtoList(List<Student> students) {
+        return students.stream().map(this::toStudentListDto).toList();
     }
 }

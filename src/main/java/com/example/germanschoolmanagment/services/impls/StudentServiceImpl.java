@@ -5,10 +5,12 @@ import com.example.germanschoolmanagment.mappers.StudentMapper;
 import com.example.germanschoolmanagment.repositories.StudentRepository;
 import com.example.germanschoolmanagment.services.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
@@ -30,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto add(StudentDto studentDto) {
         var student = studentMapper.toEntity(studentDto);
-        if (studentDto.getId() != null && studentDto.getId() > 0) {
+        if (studentDto.getId() > 0) {
             if(studentRepository.existsById(studentDto.getId())) {
                 throw new RuntimeException("Student already exists");
             }
