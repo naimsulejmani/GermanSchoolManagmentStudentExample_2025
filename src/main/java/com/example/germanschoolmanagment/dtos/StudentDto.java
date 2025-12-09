@@ -27,7 +27,7 @@ public class StudentDto {
     private String lastName;
 
 
-    @Pattern(message = "Phone number must be in the format of +38349111222", regexp = "^\\+\\d{11}$")
+    @Pattern(message = "Phone number must be in the format of +XXXYYZZZZZZ", regexp = "^\\+\\d{11}$")
     private String phoneNumber;
     private String address;
     private String city;
@@ -55,10 +55,10 @@ public class StudentDto {
 //    @ConfirmPassword(message = "Passwords do not match!")
 //    private String confirmPassword;
 
-    private boolean active;
+    private boolean active = true;
 
     @NotNull(message = "Registration date must not be null!")
-    private LocalDate registrationDate;
+    private LocalDate registrationDate = LocalDate.now();
 
     @FutureOrPresent(message = "Graduation date must be in the future or present!")
     private LocalDate graduationDate;

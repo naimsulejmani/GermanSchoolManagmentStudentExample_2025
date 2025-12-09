@@ -32,6 +32,7 @@ public class StudentMapperImpl implements StudentMapper {
         dto.setActive(entity.isActive());
         dto.setRegistrationDate(entity.getRegistrationDate());
         dto.setGraduationDate(entity.getGraduationDate());
+        dto.setImageUrl(entity.getImageUrl());
 
         return dto;
     }
@@ -56,6 +57,7 @@ public class StudentMapperImpl implements StudentMapper {
         entity.setActive(dto.isActive());
         entity.setRegistrationDate(dto.getRegistrationDate());
         entity.setGraduationDate(dto.getGraduationDate());
+        entity.setImageUrl(dto.getImageUrl());
 
         return entity;
     }

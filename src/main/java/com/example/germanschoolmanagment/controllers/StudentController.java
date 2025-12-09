@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Controller
 @RequestMapping("/students")
 @RequiredArgsConstructor
@@ -25,11 +28,17 @@ public class StudentController {
     @GetMapping("/new")
     public String getStudentForm(Model model) {
         model.addAttribute("student", new StudentDto());
+        model.addAttribute("maxDate",
+                LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        model.addAttribute("minDate",
+                LocalDate.now().minusYears(65).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return "student/new";
     }
 
+    // @ModelAttribute("emri") => duhet me qene i njejte me model.addAttribute("emri", new StudentDto());
     @PostMapping("/new")
-    public String createStudent(@Valid @ModelAttribute("student") StudentDto studentDto, BindingResult bindingResult) {
+    public String createStudent(@Valid @ModelAttribute("student") StudentDto studentDto,
+                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "student/new";
         }
